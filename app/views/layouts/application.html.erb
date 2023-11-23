@@ -11,8 +11,16 @@
   </head>
 
   <body>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <%= link_to 'Cerrar sesión', destroy_user_session_path, data: {
+            turbo_method: :delete,
+            turbo_confirm: '¿Estás seguro?'
+          } 
+      %>
+    <% end %>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
