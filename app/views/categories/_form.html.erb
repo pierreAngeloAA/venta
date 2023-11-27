@@ -1,0 +1,22 @@
+<%= form_with(model: @category) do |form| %>
+  <% @category.errors.full_messages.each do |error| %>
+    <div>
+      <%= error %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :parent_id, 'Categoría Padre' %>
+    <%= form.collection_select :parent_id, Category.where(parent_id: nil), :id, :name, prompt: 'categoria' %>
+  </div>
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,12 +1,18 @@
 class CategoriesController < ApplicationController
     before_action :category, only: [:show, :edit, :update, :destroy]
 
+    def index
+        @categories = Category.all
+        @root_categories = @categories.select { |category| category.parent_id.nil? }
+    end
+
     def show
         category
+        @subcategories = category.subcategories
     end
   
     def new
-       @category = Category.new
+        @category = Category.new
     end
   
     def create
