@@ -10,11 +10,7 @@
     <%= form.text_field :name %>
   </div>
 
-  <div>
-    <%= form.label :parent_id, 'Categoría Padre' %>
-    <%= form.collection_select :parent_id, Category.where(parent_id: nil), :id, :name, prompt: 'categoria' %>
-  </div>
-
+  <%= form.hidden_field :parent_id, value: @category_id %>
 
   <div>
     <%= form.submit %>

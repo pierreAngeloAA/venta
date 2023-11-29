@@ -1,17 +1,13 @@
 class CategoriesController < ApplicationController
     before_action :category, only: [:show, :edit, :update, :destroy]
 
-    def index
-        @categories = Category.all
-        @root_categories = @categories.select { |category| category.parent_id.nil? }
-    end
-
     def show
         category
         @subcategories = category.subcategories
     end
   
     def new
+        @category_id = params[:category_id]
         @category = Category.new
     end
   
@@ -19,9 +15,9 @@ class CategoriesController < ApplicationController
         @category = Category.new(category_params)
 
         if @category.save
-        redirect_to categories_path, notice: 'Categoría creada con éxito.'
+         redirect_to category_path(@category), notice: 'Categoría creada con éxito.'
         else
-        render :new
+         render :new
         end
     end
   
@@ -31,7 +27,7 @@ class CategoriesController < ApplicationController
   
     def update
         if category.update(category_params)
-            redirect_to categories_path, notice: 'Categoría actualizada con éxito.'
+            redirect_to root_path, notice: 'Categoría actualizada con éxito.'
         else
             render :edit, status: :unprocessable_entity
         end
@@ -39,7 +35,7 @@ class CategoriesController < ApplicationController
   
     def destroy
         category.destroy
-        redirect_to categories_path, notice: 'Categoría eliminada con éxito.', status: :see_other
+        redirect_to root_path, notice: 'Categoría eliminada con éxito.', status: :see_other
     end
   
     private

@@ -1,4 +1,7 @@
 <div>
   <h2> <%= @category.name %> </h2>
 </div>
+
 <%= render partial: 'subcategories', collection: @subcategories %>
+<%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %></td>
+
