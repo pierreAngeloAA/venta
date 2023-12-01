@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   root "main#home"
 
-  resources :categories
+  resources :categories, except: :index
+  resources :areas, only: :index
 end

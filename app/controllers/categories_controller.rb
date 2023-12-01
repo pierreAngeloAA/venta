@@ -2,8 +2,7 @@ class CategoriesController < ApplicationController
     before_action :category, only: [:show, :edit, :update, :destroy]
 
     def show
-        category
-        @subcategories = category.subcategories
+        @subcategories = @category.subcategories
     end
   
     def new
