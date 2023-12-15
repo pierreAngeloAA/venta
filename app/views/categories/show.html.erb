@@ -1,10 +1,16 @@
-<%= link_to 'Back', category_path(@category.parent) if @category.parent.present?%>
-<%= link_to 'Back', areas_path if @category.parent.blank?%>
+<%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %>
+<%= link_to 'Nueva labor', new_labour_path(category_id: @category.id) %>
+
+<%= link_to 'Back', areas_path if @category.parent.blank? %>
+
+<%= render partial: 'category', locals: { category: @category } %>
 
 <div>
-  <h2> <%= @category.name %> </h2>
+  <%= link_to 'Edit', edit_category_path(@category) %>
+  <%= link_to 'Eliminar', category_path(@category), data: {
+    turbo_method: :delete,
+    turbo_confirm: '¿Estás seguro?'
+  } %>
 </div>
 
-<%= render partial: 'subcategories', collection: @subcategories %>
-<%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %></td>
-
+<%= render partial: 'category', collection: @subcategories %>
