@@ -1,6 +1,4 @@
 class CategoriesController < ApplicationController
-    before_action :category, only: [:show, :edit, :update, :destroy]
-
     def show
         category
         @subcategories = category.subcategories
@@ -12,9 +10,9 @@ class CategoriesController < ApplicationController
     end
   
     def create
-        category = Category.new(category_params)
+        @category = Category.new(category_params)
 
-        if category.save
+        if @category.save
          redirect_to areas_path, notice: 'Categoría creada con éxito.'
         else
          render :new

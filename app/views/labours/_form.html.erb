@@ -1,13 +1,12 @@
 <%= form_with(model: @labour) do |form| %>
   <% @labour.errors.full_messages.each do |error| %>
-      <div>
+    <div>
       <%= error %>
     </div>
   <% end %>
 
-  <%= @category_id %>
-
-  <%= form.hidden_field :category_id, value: @category_id %>
+  <%= form.label :category_id, 'Seleccionar Categoría:' %>
+  <%= form.collection_select :category_id, Category.categories_and_subcategories, :id, :name, prompt: 'Selecciona una categoría' %>
 
   <div>
     <%= form.label :description %>

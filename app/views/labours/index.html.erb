@@ -1,4 +1,4 @@
-<!-- app/views/labours/index.html.erb -->
+<%= link_to 'Nueva labor', new_labour_path %>
 
 <%= form_tag labours_path, method: :get, id: 'filter-form' do %>
   <%= label_tag :category_id, 'Filtrar por categoría:' %>

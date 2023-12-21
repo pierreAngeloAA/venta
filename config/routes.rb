@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :categories, except: :index
   resources :labours, except: :show
   resources :areas, only: :index
+  resources :technicians, except: :show
 end
