@@ -1,0 +1,9 @@
+<%= render partial: 'skill', locals: { skill: @skill } %>
+
+<div>
+  <%= link_to 'Editar', edit_skill_path(@skill) %>
+  <%= link_to 'Eliminar', skill_path(@skill), data: {
+    turbo_method: :delete,
+    turbo_confirm: '¿Estás seguro?'
+  } %>
+</div>

@@ -1,0 +1,13 @@
+<div>
+  <%= link_to skill_path(skill) do %>
+    <%= skill.skill.name %>
+  <% end %>
+</div>
+
+<div>
+    <%= link_to 'Eliminar', delete_skill_technician_path(skill_id: skill.id, technician_id: skill.technician_id), data: {
+        turbo_method: :delete,
+        turbo_confirm: '¿Estás seguro?'
+        } 
+    %>
+</div>

@@ -2,8 +2,8 @@
 
 one:
   technician: one
-  specialty: one
+  skill: one
 
 two:
   technician: two
-  specialty: two
+  skill: two

@@ -1,13 +1,7 @@
-<div>
-    <%= technician.user_id %> <br>
-    <%= technician.user.email %>
-</div>
+<%= link_to technician_path(technician) do %>
+    <div>
+        <%= technician.user_id %> <br>
+        <%= technician.user.email %>
+    </div>
+<% end %>
 
-<div>
-    <%= link_to 'Editar', edit_technician_path(technician) %>  
-    <%= link_to 'Eliminar', technician_path(technician), data: {
-        turbo_method: :delete,
-        turbo_confirm: '¿Estás seguro?'
-        } 
-    %>
-</div>
