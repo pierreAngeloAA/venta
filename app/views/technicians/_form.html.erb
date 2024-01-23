@@ -1,0 +1,16 @@
+<%= form_with(model: @technician) do |form| %>
+  <% @technician.errors.full_messages.each do |error| %>
+    <div>
+      <%= error %>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= form.label :user_id, 'Seleccionar usuario:' %>
+    <%= form.collection_select :user_id, User.all, :id, :email, prompt: 'Seleccione un usuario' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

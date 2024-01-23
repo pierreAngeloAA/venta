@@ -1,5 +1,4 @@
 <%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %>
-<%= link_to 'Nueva labor', new_labour_path(category_id: @category.id) %>
 
 <%= link_to 'Back', areas_path if @category.parent.blank? %>
 
