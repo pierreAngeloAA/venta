@@ -1,0 +1,10 @@
+<%= link_to 'Back', category_path(@category.parent) if @category.parent.present?%>
+<%= link_to 'Back', areas_path if @category.parent.blank?%>
+
+<div>
+  <h2> <%= @category.name %> </h2>
+</div>
+
+<%= render partial: 'subcategories', collection: @subcategories %>
+<%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %></td>
+
