@@ -1,0 +1,24 @@
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Description:</strong></td>
+      <td><%= labour.description %></td>
+    </tr>
+    <tr>
+      <td><strong>Start Date:</strong></td>
+      <td><%= labour.start_date %></td>
+    </tr>
+    <tr>
+      <td><strong>End Date:</strong></td>
+      <td><%= labour.end_date %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to 'Edit', edit_labour_path(labour) %>
+  <%= link_to 'Eliminar', labour_path(labour), data: {
+    turbo_method: :delete,
+    turbo_confirm: '¿Estás seguro?'
+  } %>
+</div>
