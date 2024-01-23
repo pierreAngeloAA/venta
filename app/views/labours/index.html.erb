@@ -1,0 +1,17 @@
+<%= link_to 'Nueva labor', new_labour_path %>
+
+<%= form_tag labours_path, method: :get, id: 'filter-form' do %>
+  <%= label_tag :category_id, 'Filtrar por categoría:' %>
+  <%= select_tag :category_id, options_for_select(Category.categories_and_subcategories.map { |c| ["#{c.parent.name} - #{c.name}", c.id] }, params[:category_id]), prompt: 'Todas las labores', onchange: 'submitFilterForm()' %>
+  <%= submit_tag 'Filtrar', style: 'display: none;' %>
+<% end %>
+
+<script>
+  function submitFilterForm() {
+    document.getElementById('filter-form').submit();
+  }
+</script>
+
+<h1>Lista de labores</h1>
+
+<%= render partial: 'labour', collection: @labours %>

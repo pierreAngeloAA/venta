@@ -1,0 +1,16 @@
+<%= form_with(url: add_skill_technician_path, method: :put) do |form| %>
+  <% @technician_skill.errors.full_messages.each do |error| %>
+    <div>
+      <%= error %>
+    </div>
+  <% end %>
+  
+  <%= form.hidden_field :id, value: @technician.id %>
+
+  <div>
+    <%= form.label :skill_id, 'Seleccionar Habilidad:' %> <br>
+    <%= form.collection_select :skill_id, Skill.all, :id, :name, prompt: 'Selecciona una Habilidad' %>
+  </div>
+
+  <%= form.submit 'Agregar' %>
+<% end %>

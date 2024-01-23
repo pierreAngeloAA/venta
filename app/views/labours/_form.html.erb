@@ -1,0 +1,29 @@
+<%= form_with(model: @labour) do |form| %>
+  <% @labour.errors.full_messages.each do |error| %>
+    <div>
+      <%= error %>
+    </div>
+  <% end %>
+
+  <%= form.label :category_id, 'Seleccionar Categoría:' %>
+  <%= form.collection_select :category_id, Category.categories_and_subcategories, :id, :name, prompt: 'Selecciona una categoría' %>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

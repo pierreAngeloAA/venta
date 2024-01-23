@@ -1,0 +1,16 @@
+<%= render partial: 'technician', locals: { technician: @technician } %>
+
+<div>
+    <%= link_to 'Editar', edit_technician_path(@technician) %>  
+    <%= link_to 'Eliminar', technician_path(@technician), data: {
+        turbo_method: :delete,
+        turbo_confirm: '¿Estás seguro?'
+        } 
+    %>
+</div>
+
+<h3>especialidades: </h3>
+
+<%= render partial: 'skill', collection: @skills %>
+
+<%= render partial: 'add_skill' %>

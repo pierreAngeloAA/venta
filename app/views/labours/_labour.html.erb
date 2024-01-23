@@ -1,0 +1,13 @@
+<div>
+  <%= labour.description %> <br>
+  <%= labour.start_date %> <br>
+  <%= labour.end_date %>
+</div>
+
+<div>
+  <%= link_to 'Edit', edit_labour_path(labour) %>
+  <%= link_to 'Eliminar', labour_path(labour), data: {
+    turbo_method: :delete,
+    turbo_confirm: '¿Estás seguro?'
+  } %>
+</div>
