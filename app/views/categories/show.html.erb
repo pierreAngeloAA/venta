@@ -1,6 +1,7 @@
 <%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %>
 
 <%= link_to 'Back', areas_path if @category.parent.blank? %>
+<%= link_to 'Back', category_path(@category.parent) if @category.parent.present? %>
 
 <%= render partial: 'category', locals: { category: @category } %>
 
