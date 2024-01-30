@@ -1,6 +1,11 @@
-<div>
-  <strong>Especialidad:</strong>
-  <%= link_to skill_path(skill) do %>
-    <%= skill.name %>
-  <% end %>
-</div>
+<br>
+<tr>
+  <td>
+    <%= skill.id %>
+  </td>
+  <td>
+    <%= link_to skill_path(skill) do %>
+      <%= skill.name %>
+    <% end %>
+  </td>
+</tr>

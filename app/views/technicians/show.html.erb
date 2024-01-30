@@ -9,8 +9,19 @@
     %>
 </div>
 
-<h3>especialidades: </h3>
+<h3>Habilidades: </h3>
 
-<%= render partial: 'skill', collection: @skills %>
+<table>
+  <thead>
+    <tr>
+      <th>Habilidad</th>
+      <th>Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'skill', collection: @skills %>
+  </tbody>
+</table>
+
 
 <%= render partial: 'add_skill' %>

@@ -2,4 +2,14 @@
 
 <%= link_to 'Nueva Habilidad', new_skill_path %>
 
-<%= render partial: 'skill', collection: @skills %>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Habilidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'skill', collection: @skills %>
+  </tbody>
+</table>

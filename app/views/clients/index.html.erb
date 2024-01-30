@@ -2,4 +2,15 @@
 
 <%= link_to 'Nuevo Ciente', new_client_path %>
 
-<%= render partial: 'client', collection: @clients %>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Cliente</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'client', collection: @clients %>
+  </tbody>
+</table>

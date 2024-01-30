@@ -2,4 +2,14 @@
 
 <%= link_to 'Nuevo Técnico', new_technician_path %>
 
-<%= render partial: 'technician', collection: @technicians %>
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'technician', collection: @technicians %>
+  </tbody>
+</table>
