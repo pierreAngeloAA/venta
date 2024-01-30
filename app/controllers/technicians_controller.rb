@@ -41,10 +41,9 @@ class TechniciansController < ApplicationController
     end
 
     def add_skill
-        @technician_skill = TechnicianSkill.new({technician_id:  technician.id, skill_id: params[:skill_id]})
+        @technician_skill = TechnicianSkill.new({technician_id:  technician.id, skill_id: params[:skill_id], level: params[:level]})
 
         if @technician_skill.save
-            puts "="*100
             puts @technician_skill
             puts "="*100
             redirect_to technician_path(@technician_skill.technician_id), notice: 'Technician Specialty was successfully created.'

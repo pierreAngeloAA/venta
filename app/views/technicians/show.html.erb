@@ -1,4 +1,5 @@
-<%= render partial: 'technician', locals: { technician: @technician } %>
+<br>
+<%= render partial: 'technician', locals: { technician: @technician } %> 
 
 <div>
     <%= link_to 'Editar', edit_technician_path(@technician) %>  
@@ -9,13 +10,12 @@
     %>
 </div>
 
-<h3>Habilidades: </h3>
-
 <table>
   <thead>
     <tr>
-      <th>Habilidad</th>
+      <th>Habilidades</th>
       <th>Accion</th>
+      <th>Nivel</th>
     </tr>
   </thead>
   <tbody>
