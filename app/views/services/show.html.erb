@@ -1,0 +1,41 @@
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>cliente</th>
+      <th>tecnico</th>
+      <th>fecha de inicio</th>
+      <th>fecha final</th>
+      <th>descripcion</th>|
+    </tr>
+  </thead>
+  <tbody>
+   <%= render partial: 'service', locals: { service: @service } %>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to 'Editar', edit_service_path(@service.id) %>
+  <%= link_to 'Eliminar', service_path(@service.id), data: {
+    turbo_method: :delete,
+    turbo_confirm: '¿Estás seguro?'
+  } %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>descripcion</th>
+      <th>fecha de inicio</th>
+      <th>fecha final</th>
+      <th>duracion/Hora</th>
+      <th>Acciones</th>|
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'labour', collection: @labours %> 
+  </tbody>
+</table>
+
+<%= render partial: 'add_labour'%>

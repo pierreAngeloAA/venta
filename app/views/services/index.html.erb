@@ -1,0 +1,19 @@
+<h1>Lista de Servicios</h1>
+
+<%= link_to 'Nuevo servicio', new_service_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>cliente</th>
+      <th>tecnico</th>
+      <th>fecha de inicio</th>
+      <th>fecha final</th>
+      <th>descripcion</th>|
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'service', collection: @services %>
+  </tbody>
+</table>

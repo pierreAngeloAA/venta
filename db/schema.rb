@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_30_212518) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_02_170525) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
@@ -33,6 +33,28 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_212518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_labours_on_category_id"
+  end
+
+  create_table "service_labours", force: :cascade do |t|
+    t.integer "service_id", null: false
+    t.integer "labour_id", null: false
+    t.integer "hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["labour_id"], name: "index_service_labours_on_labour_id"
+    t.index ["service_id"], name: "index_service_labours_on_service_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.integer "technician_id", null: false
+    t.string "description"
+    t.date "initial_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_services_on_client_id"
+    t.index ["technician_id"], name: "index_services_on_technician_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -71,6 +93,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_212518) do
   end
 
   add_foreign_key "labours", "categories"
+  add_foreign_key "service_labours", "labours"
+  add_foreign_key "service_labours", "services"
+  add_foreign_key "services", "clients"
+  add_foreign_key "services", "technicians"
   add_foreign_key "technician_skills", "skills"
   add_foreign_key "technician_skills", "technicians"
   add_foreign_key "technicians", "users"
