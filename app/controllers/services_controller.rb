@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+
+    before_action :authorize_client
     before_action :set_service, only: [:show, :edit, :update, :destroy, :add_labour]
   
     def index

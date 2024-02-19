@@ -3,4 +3,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def admin?
+    client.nil? && technician.nil?
+  end
+
+  def client?
+    client.present?
+  end
+
+  def technician?
+    technician.present?
+  end
 end

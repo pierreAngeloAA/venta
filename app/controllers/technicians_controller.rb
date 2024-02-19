@@ -1,4 +1,6 @@
 class TechniciansController < ApplicationController
+    before_action 
+
     def index
         @technicians = Technician.all
     end

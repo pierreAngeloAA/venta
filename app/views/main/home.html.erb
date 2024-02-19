@@ -1,18 +1,35 @@
-<div>
-    <%= link_to 'Areas', areas_path %>
-</div>
-<div>
-    <%= link_to 'Labores', labours_path %>
-</div>
-<div>
-    <%= link_to 'Tecnicos', technicians_path %>
-</div>
-<div>
-    <%= link_to 'Habilidades', skills_path %>
-</div>
-<div>
-    <%= link_to 'clientes', clients_path %>
-</div>
-<div>
-    <%= link_to 'Servicios', services_path %>
-</div>
+<% if current_user.admin? %>
+    <div>
+        <%= link_to 'Areas', areas_path %>
+    </div>
+<% end %>
+<% if current_user.admin? %>
+    <div>
+        <%= link_to 'Labores', labours_path %>
+    </div>
+<% end %>
+<% if current_user.admin? %>
+    <div>
+        <%= link_to 'Tecnicos', technicians_path %>
+    </div>
+<% end %>
+<% if current_user.technician? %>
+    <div>
+        <%= link_to 'Perfil', technician_path(current_user.technician) %>
+    </div>
+<% end %>
+<% if current_user.admin? %>
+    <div>
+        <%= link_to 'Habilidades', skills_path %>
+    </div>
+<% end %>
+<% if current_user.admin? %>
+    <div>
+        <%= link_to 'clientes', clients_path %>
+    </div>
+<% end %>
+<% if current_user.admin? || current_user.client? %>
+    <div>
+        <%= link_to 'Servicios', services_path %>
+    </div>
+<% end %>
