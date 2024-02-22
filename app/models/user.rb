@@ -5,14 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def admin?
-    client.nil? && technician.nil?
+    client_id.nil? && technician_id.nil?
   end
 
   def client?
-    client.present?
+    client_id.present?
   end
 
   def technician?
-    technician.present?
+    technician_id.present?
   end
 end

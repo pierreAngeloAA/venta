@@ -13,11 +13,21 @@
         <%= link_to 'Tecnicos', technicians_path %>
     </div>
 <% end %>
-<% if current_user.technician? %>
+
+
+<% if current_user.technician_id? %>
     <div>
-        <%= link_to 'Perfil', technician_path(current_user.technician) %>
+        <%= link_to 'Perfil', technician_path(current_user.technician_id) %>
     </div>
 <% end %>
+
+<% if current_user.client_id? %>
+    <div>
+        <%= link_to 'Perfil', client_path(current_user.client_id) %>
+    </div>
+<% end %>
+
+
 <% if current_user.admin? %>
     <div>
         <%= link_to 'Habilidades', skills_path %>

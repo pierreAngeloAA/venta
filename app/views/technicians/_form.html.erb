@@ -1,16 +1,33 @@
-<%= form_with(model: @technician) do |form| %>
-  <% @technician.errors.full_messages.each do |error| %>
-    <div>
-      <%= error %>
-    </div>
-  <% end %>
+<%= form_with(model: @technician, local: true) do |form| %>
+ 
+        <% @technician.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
   
-  <div>
-    <%= form.label :user_id, 'Seleccionar usuario:' %>
-    <%= form.collection_select :user_id, User.all, :id, :email, prompt: 'Seleccione un usuario' %>
+    <div class="field">
+      <%= form.label :user_id, 'Seleccionar Usuario:' %>
+      <%= form.collection_select :user_id,User.where(technician_id: nil), :id, :email, prompt: 'Selecciona un Usuario' %>
+    </div>
+  <%# <% else %>
+    <%# <%= form.hidden_field :user_id, value: @technician.user_id %> %>
+  <%# <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
 
-  <div>
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :speciality %>
+    <%= form.text_field :speciality %>
+  </div>
+
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

@@ -13,12 +13,14 @@ class TechniciansController < ApplicationController
 
     def new
         @technician = Technician.new
+
     end
 
     def create
         @technician = Technician.new(technician_params)
 
         if @technician.save
+            User.find_by(id: @technician.user_id).update(technician_id: @technician.id) if @technician.user_id.present?
             redirect_to technicians_path, notice: 'Técnico creado con éxito.'
         else
             render :new
@@ -68,7 +70,10 @@ class TechniciansController < ApplicationController
 
     def technician_params
         params.require(:technician).permit(
-            :user_id
+          :name,
+          :age,
+          :speciality,
+          :user_id
         )
     end
 end

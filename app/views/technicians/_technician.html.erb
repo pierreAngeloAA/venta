@@ -1,11 +1,15 @@
 <tr>
   <td>
-    <%= technician.user_id %> 
-  </td>
-  
-  <td>
     <%= link_to technician_path(technician) do %>
-      <%= technician.user.email %>
+     <%= technician.name %>
     <% end %>
+  </td>
+
+  <td>
+    <%= technician.age %>
+  </td>
+
+  <td>
+    <%= technician.speciality %>
   </td>
 </tr>
