@@ -17,7 +17,6 @@ class ClientsController < ApplicationController
         if @client.save
             redirect_to clients_path, notice: 'Client was successfully created.'
         else
-            flash[:error] = @client.errors.full_messages
             render :new, status: :unprocessable_entity
         end
     end      

@@ -1,4 +1,3 @@
-<!-- app/views/services/_form.html.erb -->
 <%= form_with(model: @service, local: true) do |form| %>
   <div>
     <%= form.label :client_id, 'Cliente' %>
@@ -7,7 +6,7 @@
 
   <div>
     <%= form.label :technician_id, 'Técnico' %>
-    <%= form.collection_select :technician_id, Technician.all, :id, :user_id, prompt: 'Seleccione un técnico' %>
+    <%= form.collection_select :technician_id, Technician.all, :id, :name, prompt: 'Seleccione un técnico' %>
   </div>
 
   <div>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
   
   resources :services do
-      post :add_labour, on: :member
+      put :add_labour, on: :member
       delete :delete_labour, on: :member
   end  
 end
