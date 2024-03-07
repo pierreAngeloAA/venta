@@ -72,7 +72,7 @@ class TechniciansController < ApplicationController
     def technician_params
         params.require(:technician).permit(
             :name,
-            :last_name
+            :user_id
         )
     end
   end

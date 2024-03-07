@@ -1,8 +1,6 @@
 <%= form_with(model: @skill, local: true) do |form| %>
-    <% @skill.errors.full_messages.each do |error| %>
-        <div>
-         <%= error %>
-        </div>
+    <% @skill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
     <% end %>
 
     <div>

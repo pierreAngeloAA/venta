@@ -7,12 +7,12 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-  
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
 
+  <div>
+    <%= form.label :user_id, 'Seleccionar usuario:' %>
+    <%= form.collection_select :user_id,  User.includes(:technician).where(technicians: { id: nil }), :id, :email, prompt: 'Seleccione un usuario' %>
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>

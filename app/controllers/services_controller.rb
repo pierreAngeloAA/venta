@@ -22,7 +22,7 @@ class ServicesController < ApplicationController
         if @service.save
             redirect_to @service, notice: 'El servicio fue creado exitosamente.'
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
   
@@ -48,8 +48,7 @@ class ServicesController < ApplicationController
         if @service_labour.save
             redirect_to service_path(@service.id), notice: 'Se agregó la labor correctamente.'
         else
-            @labours = @service.service_labours
-            render :show
+            render :show, status: :unprocessable_entity
         end
     end
   

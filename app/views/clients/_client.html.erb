@@ -6,6 +6,9 @@
       <%= client.name %>
   </td>
   <td>
+      <%= client.user.email %>
+  </td>
+  <td>
     <div>
       <%= link_to 'Editar', edit_client_path(client) %>
       <%= link_to 'Eliminar', client_path(client), data: {

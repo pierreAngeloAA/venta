@@ -1,3 +1,5 @@
+<%= render partial: 'shared/back_button', locals: { back_path: @category.build_back_path } %>
+
 <%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %>
 
 <%= render partial: 'category', locals: { category: @category } %>

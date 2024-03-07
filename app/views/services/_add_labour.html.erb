@@ -1,11 +1,11 @@
+<h3>Agregar labor</h3>
+
 <%= form_with(model: @service_labour, url: add_labour_service_path, method: :put) do |form| %>
-  <% @service_labour.errors.full_messages.each do |error| %>
-    <div>
-      <%= error %>
-    </div>
+  <% @service_labour.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
   <% end %>
 
-  <%= form.hidden_field :service_id, value: @service.id %> <br>
+  <%= form.hidden_field :service_id, value: @service.id %>
 
   <div>
     <%= form.label :labour_id, 'Seleccionar Labor:' %> <br>

@@ -1,6 +1,8 @@
 class Technician < ApplicationRecord
-    has_many :technician_skills
+    belongs_to :user
+    has_many :technician_skills, dependent: :destroy
     has_many :skills, through: :technician_skills
-    
-    validates_presence_of :name, :last_name
+
+    validates :name, presence: true
+    validates :user_id, uniqueness: true, allow_nil: true
 end

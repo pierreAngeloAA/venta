@@ -4,15 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one :technician
+  has_one :client
+
+
   def admin?
-    client_id.nil? && technician_id.nil?
+    client.nil? && technician.nil?
   end
 
   def client?
-    client_id.present?
+    client.present?
   end
 
   def technician?
-    technician_id.present?
+    technician.present?
   end
 end
