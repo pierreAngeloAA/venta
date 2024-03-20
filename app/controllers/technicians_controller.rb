@@ -18,6 +18,7 @@ class TechniciansController < ApplicationController
       @technician = Technician.new(technician_params)
   
       if @technician.save
+        UserMailer.with(technician: @technician).welcome_technician.deliver_later
         redirect_to technicians_path, notice: 'Técnico creado con éxito.'
       else
         render :new, status: :unprocessable_entity

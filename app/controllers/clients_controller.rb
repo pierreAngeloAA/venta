@@ -15,6 +15,7 @@ class ClientsController < ApplicationController
         @client = Client.new(client_params)
       
         if @client.save
+            UserMailer.with(client: @client).welcome_client.deliver_later
             redirect_to clients_path, notice: 'Client was successfully created.'
         else
             render :new, status: :unprocessable_entity

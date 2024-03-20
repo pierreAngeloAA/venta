@@ -1,5 +1,5 @@
 class Technician < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, optional: true
     has_many :technician_skills, dependent: :destroy
     has_many :skills, through: :technician_skills
 
