@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :labours, except: :show
   resources :areas, only: :index
   resources :skills
+  resources :clients
   resources :technicians do
     put :add_skill, on: :member
     delete :delete_skill, on: :member

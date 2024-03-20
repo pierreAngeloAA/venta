@@ -1,0 +1,16 @@
+<h1>Lista de Clientes</h1>
+
+<%= link_to 'Nuevo Ciente', new_client_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Cliente</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'client', collection: @clients %>
+  </tbody>
+</table>

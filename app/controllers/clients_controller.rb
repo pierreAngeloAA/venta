@@ -1,0 +1,50 @@
+class ClientsController < ApplicationController
+    def index
+        @clients = Client.all
+    end
+  
+    def show
+        client
+    end
+  
+    def new
+        @client = Client.new
+    end
+  
+    def create
+        @client = Client.new(client_params)
+      
+        if @client.save
+            redirect_to clients_path, notice: 'Client was successfully created.'
+        else
+            flash[:error] = @client.errors.full_messages
+            render :new, status: :unprocessable_entity
+        end
+    end      
+  
+    def edit
+        client
+    end
+  
+    def update
+        if client.update(@client)
+            redirect_to @client, notice: 'Client was successfully updated.'
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+  
+    def destroy
+        client.destroy
+        redirect_to clients_url, notice: 'Client was successfully destroyed.'
+    end
+  
+    private
+    def client
+        @client = Client.find(params[:id])
+    end
+  
+    def client_params
+        params.require(:client).permit(:name)
+    end
+  end

@@ -1,7 +1,11 @@
-<%= link_to technician_path(technician) do %>
-    <div>
-        <%= technician.user_id %> <br>
-        <%= technician.user.email %>
-    </div>
-<% end %>
-
+<tr>
+  <td>
+    <%= technician.user_id %> 
+  </td>
+  
+  <td>
+    <%= link_to technician_path(technician) do %>
+      <%= technician.user.email %>
+    <% end %>
+  </td>
+</tr>
