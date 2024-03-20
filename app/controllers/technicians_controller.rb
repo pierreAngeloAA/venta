@@ -41,18 +41,13 @@ class TechniciansController < ApplicationController
     end
 
     def add_skill
+        return render :show if technician.skills.exists?(params[:skill_id])
+
         @technician_skill = TechnicianSkill.new({technician_id:  technician.id, skill_id: params[:skill_id], level: params[:level]})
 
         if @technician_skill.save
-            puts @technician_skill
-            puts "="*100
             redirect_to technician_path(@technician_skill.technician_id), notice: 'Technician Specialty was successfully created.'
-        else
-            puts "="*100, "ERROR"
-            puts @technician_skill.errors.full_messages
-            puts "="*100
-            
-            @skill = @technician.technician_specialties
+        else 
             render :show
         end
     end
@@ -61,7 +56,7 @@ class TechniciansController < ApplicationController
         skill = TechnicianSkill.find(params[:skill_id])
         skill.destroy
         redirect_to technician_path(params[:technician_id]), notice: 'Especialidad eliminada exitosamente.'
-      end
+    end
 
     private
 

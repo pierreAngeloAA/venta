@@ -1,0 +1,21 @@
+<%= form_with(model: @service_labour, url: add_labour_service_path, method: :post) do |form| %>
+  <% @service_labour.errors.full_messages.each do |error| %>
+    <div>
+      <%= error %>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :service_id, value: @service.id %>
+
+  <div>
+    <%= form.label :labour_id, 'Seleccionar Trabajo:' %> <br>
+    <%= form.collection_select :labour_id, Labour.all, :id, :description, prompt: 'Selecciona un Trabajo' %>
+  </div>
+
+  <div>
+    <%= form.label :hours, 'Horas' %>
+    <%= form.number_field :hours, min: 1 %>
+  </div>
+
+  <%= form.submit 'Agregar' %>
+<% end %>

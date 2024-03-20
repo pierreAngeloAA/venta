@@ -1,0 +1,31 @@
+<!-- app/views/services/_form.html.erb -->
+<%= form_with(model: @service, local: true) do |form| %>
+  <div>
+    <%= form.label :client_id, 'Cliente' %>
+    <%= form.collection_select :client_id, Client.all, :id, :name, prompt: 'Seleccione un cliente' %>
+  </div>
+
+  <div>
+    <%= form.label :technician_id, 'Técnico' %>
+    <%= form.collection_select :technician_id, Technician.all, :id, :user_id, prompt: 'Seleccione un técnico' %>
+  </div>
+
+  <div>
+    <%= form.label :description, 'Descripción' %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :initial_date, 'Fecha de Inicio' %>
+    <%= form.date_field :initial_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, 'Fecha de Fin' %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.submit 'Guardar' %>
+  </div>
+<% end %>

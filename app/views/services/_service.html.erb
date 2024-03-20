@@ -1,0 +1,12 @@
+<tr>
+    <td><%= service.id %></td>
+    <td>
+        <%= link_to service_path(service.id) do %>
+            <%= service.client.name %>
+        <% end %>
+    </td>
+    <td><%= service.technician.id %></td>
+    <td><%= service.initial_date %></td>
+    <td><%= service.end_date %></td>
+    <td><%= service.description %></td>
+</tr>
