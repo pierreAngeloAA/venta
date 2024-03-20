@@ -3,8 +3,16 @@
     <%= skill.id %>
   </td>
   <td>
-    <%= link_to skill_path(skill) do %>
       <%= skill.name %>
-    <% end %>
+  </td>
+  <td>
+    <div>
+      <%= link_to 'Editar', edit_skill_path(skill) %>
+        <%= link_to 'Eliminar', skill_path(skill), data: {
+          turbo_method: :delete,
+          turbo_confirm: '¿Estás seguro?'
+        }   
+      %>
+    </div>
   </td>
 </tr>

@@ -1,8 +1,6 @@
 <%= form_with(model: @category) do |form| %>
-  <% @category.errors.full_messages.each do |error| %>
-    <div>
-      <%= error %>
-    </div>
+  <% @category.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
   <% end %>
 
   <div>

@@ -1,27 +1,11 @@
-<br>
-<%= render partial: 'technician', locals: { technician: @technician } %> 
+<h4><%= @technician.name.upcase %></h4> 
+<h5><%= @technician.user.email %></h5
 
-<div>
-    <%= link_to 'Editar', edit_technician_path(@technician) %>  
-    <%= link_to 'Eliminar', technician_path(@technician), data: {
-        turbo_method: :delete,
-        turbo_confirm: '¿Estás seguro?'
-        } 
-    %>
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Habilidades</th>
-      <th>Accion</th>
-      <th>Nivel</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: 'skill', collection: @skills %>
-  </tbody>
-</table>
-
+<h3>Especialidades: </h3>
+<ul>
+  <% @skills.each do |skill| %>
+    <li><%= skill.skill.name %> - <%= skill.level %></li>
+  <% end %>
+</ul>
 
 <%= render partial: 'add_skill' %>

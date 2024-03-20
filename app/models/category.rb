@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+    include Rails.application.routes.url_helpers
+    
     belongs_to :parent, class_name: 'Category', optional: true
     has_many :subcategories, class_name: 'Category', foreign_key: 'parent_id', dependent: :destroy
     has_many :labour
@@ -23,6 +25,10 @@ class Category < ApplicationRecord
 
     def self.categories_and_subcategories
         categories + subcategories
+    end
+
+    def build_back_path
+        area? ? areas_path : category_path(parent_id)
     end
     
 end

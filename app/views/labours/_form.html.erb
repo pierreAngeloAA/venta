@@ -1,8 +1,6 @@
 <%= form_with(model: @labour) do |form| %>
-  <% @labour.errors.full_messages.each do |error| %>
-    <div>
-      <%= error %>
-    </div>
+  <% @labour.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
   <% end %>
 
   <%= form.label :category_id, 'Seleccionar Categoría:' %>

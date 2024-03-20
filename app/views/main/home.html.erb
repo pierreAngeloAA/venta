@@ -1,18 +1,47 @@
 <div>
-    <%= link_to 'Areas', areas_path %>
+    <h1><%= link_to 'Areas'.upcase, areas_path %></h1>
 </div>
-<div>
-    <%= link_to 'Labores', labours_path %>
-</div>
-<div>
-    <%= link_to 'Tecnicos', technicians_path %>
-</div>
-<div>
-    <%= link_to 'Habilidades', skills_path %>
-</div>
-<div>
-    <%= link_to 'clientes', clients_path %>
-</div>
-<div>
-    <%= link_to 'Servicios', services_path %>
-</div>
+
+<% if current_user.admin? %>
+    <div>
+       <h1> <%= link_to 'Labores'.upcase, labours_path %></h1>
+    </div>
+<% end %>
+
+<% if current_user.admin? %>
+    <div>
+        <h1><%= link_to 'Tecnicos'.upcase, technicians_path %></h1>
+    </div>
+<% end %>
+
+
+<% if current_user.technician? %>
+    <div>
+        <h1><%= link_to 'Perfil', technician_path(current_user.technician) %></h1>
+    </div>
+<% end %>
+
+<% if current_user.client? %>
+    <div>
+        <h1><%= link_to 'Perfil'.upcase, client_path(current_user.client) %></h1>
+    </div>
+<% end %>
+
+
+<% if current_user.admin? %>
+    <div>
+        <h1><%= link_to 'Habilidades'.upcase, skills_path %></h1>
+    </div>
+<% end %>
+
+<% if current_user.admin? %>
+    <div>
+       <h1> <%= link_to 'clientes'.upcase, clients_path %></h1>
+    </div>
+<% end %>
+
+<% if current_user.admin? || current_user.client? %>
+    <div>
+        <h1><%= link_to 'Servicios'.upcase, services_path %></h1>
+    </div>
+<% end %>

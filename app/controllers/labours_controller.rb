@@ -18,7 +18,7 @@ class LaboursController < ApplicationController
     if @labour.save
       redirect_to labours_path, notice: 'Labor creada con éxito.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

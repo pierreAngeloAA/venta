@@ -1,5 +1,8 @@
-<!-- app/views/services/_form.html.erb -->
 <%= form_with(model: @service, local: true) do |form| %>
+  <% @service.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+  <% end %>
+
   <div>
     <%= form.label :client_id, 'Cliente' %>
     <%= form.collection_select :client_id, Client.all, :id, :name, prompt: 'Seleccione un cliente' %>
@@ -7,7 +10,7 @@
 
   <div>
     <%= form.label :technician_id, 'Técnico' %>
-    <%= form.collection_select :technician_id, Technician.all, :id, :user_id, prompt: 'Seleccione un técnico' %>
+    <%= form.collection_select :technician_id, Technician.all, :id, :name, prompt: 'Seleccione un técnico' %>
   </div>
 
   <div>

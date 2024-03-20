@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_02_170525) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_05_163501) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
@@ -74,10 +74,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_02_170525) do
   end
 
   create_table "technicians", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.string "name"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_technicians_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,5 +99,4 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_02_170525) do
   add_foreign_key "services", "technicians"
   add_foreign_key "technician_skills", "skills"
   add_foreign_key "technician_skills", "technicians"
-  add_foreign_key "technicians", "users"
 end

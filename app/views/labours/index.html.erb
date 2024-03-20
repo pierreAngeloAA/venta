@@ -1,4 +1,4 @@
-<%= link_to 'Nueva labor', new_labour_path %>
+<%= link_to 'Nueva labor', new_labour_path %><br><br>
 
 <%= form_tag labours_path, method: :get, id: 'filter-form' do %>
   <%= label_tag :category_id, 'Filtrar por categoría:' %>
@@ -14,4 +14,16 @@
 
 <h1>Lista de labores</h1>
 
-<%= render partial: 'labour', collection: @labours %>
+<table>
+  <thead>
+    <tr>
+      <th>Descripcion</th>
+      <th>Fecha de inicio</th>
+      <th>Fecha final</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'labour', collection: @labours %>
+  </tbody>
+</table>

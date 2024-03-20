@@ -17,7 +17,6 @@ class ClientsController < ApplicationController
         if @client.save
             redirect_to clients_path, notice: 'Client was successfully created.'
         else
-            flash[:error] = @client.errors.full_messages
             render :new, status: :unprocessable_entity
         end
     end      
@@ -27,10 +26,10 @@ class ClientsController < ApplicationController
     end
   
     def update
-        if client.update(@client)
-            redirect_to @client, notice: 'Client was successfully updated.'
+        if client.update(client_params)
+            redirect_to clients_path, notice: 'Client was successfully updated.'
         else
-            render :edit, status: :unprocessable_entity
+            render :index, status: :unprocessable_entity
         end
     end
   
@@ -45,6 +44,9 @@ class ClientsController < ApplicationController
     end
   
     def client_params
-        params.require(:client).permit(:name)
+        params.require(:client).permit(
+            :name,
+            :user_id
+            )
     end
   end
