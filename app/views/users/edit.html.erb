@@ -1,0 +1,14 @@
+<%= form_for @user do |f| %>  
+    <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :role %>
+        <%= f.select :role, User.roles.keys.map { |role| [role.titleize, role] }, prompt: 'Select a Role' %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit 'Update User' %>
+    </div>
+<% end %>

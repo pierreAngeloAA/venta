@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :skills
   resources :clients
 
+  resources :users do
+    put :edit_role, on: :member
+  end
+  
   resources :technicians do
     put :add_skill, on: :member
     delete :delete_skill, on: :member
