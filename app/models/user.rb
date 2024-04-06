@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_one :client
 
   enum role: [:admin, :technician,  :client]
+
+  attr_accessor :name
+
 end

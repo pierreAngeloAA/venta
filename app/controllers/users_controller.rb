@@ -16,16 +16,16 @@ class UsersController < ApplicationController
           render :edit
         end
     end
+
     private
 
     def user_params
         params.require(:user).permit(
             :nombre,
-            :email, 
-            :password, 
+            :email,
+            :password,
             :password_confirmation,
             :role
         )
-    end      
+    end
 end
-  
