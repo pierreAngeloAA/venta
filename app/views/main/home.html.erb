@@ -17,20 +17,6 @@
     </div>
 <% end %>
 
-
-<% if current_user.technician? %>
-    <div>
-        <h1><%= link_to 'Perfil', technician_path(current_user.technician) %></h1>
-    </div>
-<% end %>
-
-<% if current_user.client? %>
-    <div>
-        <h1><%= link_to 'Perfil'.upcase, user_path(current_user) %></h1>
-    </div>
-<% end %>
-
-
 <% if current_user.admin? %>
     <div>
         <h1><%= link_to 'Habilidades'.upcase, skills_path %></h1>
