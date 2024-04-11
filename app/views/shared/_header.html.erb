@@ -1,6 +1,4 @@
-<%= link_to 'Home', root_path %>
-
-<%= link_to 'Back', request.referer if action_name == 'show' || action_name == 'new' || action_name == 'edit' %>
+<%= link_to 'Home', root_path %> 
 
 <% case current_user&.role %>
   <% when 'client' %>
