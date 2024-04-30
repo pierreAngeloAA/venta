@@ -15,7 +15,7 @@ class SkillsController < ApplicationController
         @skill = Skill.new(skill_params)
 
         if @skill.save
-            redirect_to skills_path, notice: 'Skill was successfully created.'
+            redirect_to skills_path, notice: 'Habilidad creada con éxito.'
         else
             render :new, status: :unprocessable_entity
         end
@@ -28,7 +28,7 @@ class SkillsController < ApplicationController
     def update
         skill
         if skill.update(skill_params)
-            redirect_to skills_path, notice: 'Skill was successfully updated.'
+            redirect_to skills_path, notice: 'Habilidad actualizada con exito.'
         else
             render :edit, status: :unprocessable_entity
         end
@@ -37,7 +37,7 @@ class SkillsController < ApplicationController
     def destroy
         skill
         skill.destroy
-        redirect_to  skills_path, notice: 'Skill was successfully destroyed.'
+        redirect_to  skills_path, alert: 'Habilidad eliminada'
     end
 
     private

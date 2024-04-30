@@ -1,14 +1,10 @@
 user1 = User.create!(
   email: 'user1@venta.com',
   password: 'testme',
+  role: 'admin',
   password_confirmation: 'testme'
 )
 
-user2 = User.create!(
-  email: 'user2@venta.com',
-  password: 'testme',
-  password_confirmation: 'testme'
-)
 
 area_1 = Category.create(name: "Metalmecania")
 area_2 = Category.create(name: "Construccion")

@@ -38,7 +38,7 @@ class LaboursController < ApplicationController
   def destroy
     @category_id = labour.category_id
     labour.destroy
-    redirect_to labours_path, notice: 'Labor eliminada con éxito.'
+    redirect_to labours_path, alert: 'Labor eliminada con éxito.'
   end
 
   private

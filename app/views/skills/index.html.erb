@@ -1,16 +1,32 @@
-<h1>Lista de Habilidades</h1>
+<h1 class="text-center mb-4">Lista de Habilidades</h1>
 
-<%= link_to 'Nueva Habilidad', new_skill_path %>
+<%= link_to 'Nueva Habilidad', new_skill_path, class: 'btn btn-primary mb-3' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Habilidad</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: 'skill', collection: @skills %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-borderd table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Habilidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @skills.each do |skill| %>
+          <tr>
+            <td><%= skill.id %></td>
+            <td><%= skill.name %></td>
+            <td>
+              <%= link_to 'Editar', edit_skill_path(skill), class: "btn btn-primary me-2" %>
+                <%= link_to 'Eliminar', skill_path(skill), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: '¿Estás seguro?'
+                }, class: "btn btn-danger me-2" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

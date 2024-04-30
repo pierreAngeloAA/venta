@@ -1,7 +1,7 @@
-<h1>Editar Cliente</h1>
+<h1 class="text-center mb-4">Editar Cliente</h1>
 
 <%= render partial: 'form', client: @client %>
 
 <% if @client.user_id.blank? %>
-  <%= link_to "Assign User", assign_user_client_path, data: { turbo_method: :put, turbo_confirm: "Are you sure?" } %>
+  <%= link_to "Assign User", assign_user_client_path, data: {turbo_method: :put, turbo_confirm: "Are you sure?"}%>
 <% end %>

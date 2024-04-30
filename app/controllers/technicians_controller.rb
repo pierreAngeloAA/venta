@@ -1,5 +1,5 @@
 class TechniciansController < ApplicationController
-    before_action :find_technician, only: [:show, :edit, :update, :destroy, :add_skill, :delete_skill]
+    before_action :find_technician, only: [:show, :edit, :update, :destroy, :add_skill]
 
     def index
       @technicians = Technician.all
@@ -31,13 +31,13 @@ class TechniciansController < ApplicationController
       if @technician.update(technician_params)
         redirect_to technicians_path, notice: 'Técnico actualizado con éxito.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       @technician.destroy
-      redirect_to technicians_path, notice: 'Técnico eliminado con éxito.'
+      redirect_to technicians_path, alert: 'Técnico eliminado con éxito.'
     end
 
     def add_skill
@@ -46,16 +46,17 @@ class TechniciansController < ApplicationController
       @technician_skill = TechnicianSkill.new(technician_id: @technician.id, skill_id: params[:skill_id], level: params[:level])
 
       if @technician_skill.save
-        redirect_to technician_path(@technician_skill.technician_id), notice: 'Technician Specialty was successfully created.'
+        redirect_to technician_path(@technician_skill.technician_id), notice: 'Habilidad agregada correctamente.'
       else
-        render :show
+        render :show, status: :unprocessable_entity
       end
     end
 
     def delete_skill
-      skill = TechnicianSkill.find(params[:skill_id])
-      skill.destroy
-      redirect_to technician_path(params[:technician_id]), notice: 'Especialidad eliminada exitosamente.'
+      @technician_skill = TechnicianSkill.find(params[:id])
+      technician_id = @technician_skill.technician_id
+      @technician_skill.destroy
+      redirect_to technician_path(technician_id), alert: 'Habilidad eliminada exitosamente.'
     end
 
     private

@@ -1,14 +1,16 @@
-<%= form_with(model: @skill, local: true) do |form| %>
-    <% @skill.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-    <% end %>
+<%= form_with(model: @skill) do |form| %>
+	<% @skill.errors.full_messages.each do |message| %>
+		<div class="alert alert-danger">
+			<%= message %>
+		</div>
+	<% end %>
 
-    <div>
-        <%= form.label :name %>
-        <%= form.text_field :name %>
-    </div>
+	<div class="mb-3 form-group">
+			<%= form.label :name, 'name' %>
+			<%= form.text_field :name , class: 'form-control'%>
+	</div>
 
-    <div>
-        <%= form.submit %>
-    </div>
+	<div class="mb-3 form-group">
+			<%= form.submit 'Guardar', class: 'btn btn-primary'%>
+	</div>
 <% end %>

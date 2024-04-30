@@ -1,5 +1,7 @@
-<h1>Areas</h1>
+<h1 class="text-center mb-4">Areas</h1>
 
-<%= link_to 'Nueva Area', new_category_path %></td>
+<%= link_to 'Nueva Area', new_category_path, class: 'btn btn-primary mb-3' %></td>
 
-<%= render partial: 'categories/category', collection: @root_categories %>
+<div class="row justify-content-center">
+  <%= render partial: 'categories/category', collection: @root_categories %>
+</div>

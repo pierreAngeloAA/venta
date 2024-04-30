@@ -1,6 +1,8 @@
 <%= form_with(model: @category) do |form| %>
   <% @category.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+    <div class="alert alert-danger">
+      <%= message %>
+    </div>
   <% end %>
 
   <div>

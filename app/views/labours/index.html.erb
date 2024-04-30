@@ -1,10 +1,19 @@
-<%= link_to 'Nueva labor', new_labour_path %><br><br>
+<h1 class="text-center mb-4">Lista De labores</h1>
 
-<%= form_tag labours_path, method: :get, id: 'filter-form' do %>
-  <%= label_tag :category_id, 'Filtrar por categoría:' %>
-  <%= select_tag :category_id, options_for_select(Category.categories_and_subcategories.map { |c| ["#{c.parent.name} - #{c.name}", c.id] }, params[:category_id]), prompt: 'Todas las labores', onchange: 'submitFilterForm()' %>
-  <%= submit_tag 'Filtrar', style: 'display: none;' %>
-<% end %>
+<div class="container">
+  <div class="col-md-6">
+    <%= link_to 'Nueva labor', new_labour_path, class: 'btn btn-primary mb-3' %>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_tag labours_path, method: :get, id: 'filter-form', class: 'mb-3' do %>
+        <%= label_tag :category_id, 'Filtrar por categoría:', class: 'form-label' %>
+        <%= select_tag :category_id, options_for_select(Category.categories_and_subcategories.map { |c| ["#{c.parent.name} - #{c.name}", c.id] }, params[:category_id]), prompt: 'Todas las labores', class: 'form-select', onchange: 'submitFilterForm()' %>
+        <%= submit_tag 'Filtrar', class: 'btn btn-primary', style: 'display: none;' %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <script>
   function submitFilterForm() {
@@ -12,18 +21,33 @@
   }
 </script>
 
-<h1>Lista de labores</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Descripcion</th>
-      <th>Fecha de inicio</th>
-      <th>Fecha final</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: 'labour', collection: @labours %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Descripcion</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha final</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @labours.each do |labour| %>
+            <tr>
+              <td><%= labour.description.upcase %></td>
+              <td><%= labour.start_date %></td>
+              <td><%= labour.end_date %></td>
+              <td>
+                <%= link_to 'Editar', edit_labour_path(labour), class: "btn btn-primary me-2" %>
+                <%= link_to 'Eliminar', labour_path(labour), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: '¿Estás seguro?'
+                  }, class: "btn btn-danger me-2"%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

@@ -1,19 +1,36 @@
-<h1>Lista de Servicios</h1>
+<h1 class="text-center mb-4">Lista de Servicios</h1>
 
-<%= link_to 'Nuevo servicio', new_service_path %>
+<%= link_to 'Nuevo servicio', new_service_path, class: 'btn btn-primary mb-3'%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>cliente</th>
-      <th>Tecnico</th>
-      <th>Fecha de inicio</th>
-      <th>Fecha final</th>
-      <th>Descripcion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: 'service', collection: @services %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-dordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>cliente</th>
+          <th>Tecnico</th>
+          <th>Fecha de inicio</th>
+          <th>Fecha final</th>
+          <th>Descripcion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @services.each do |service| %>
+          <tr>
+            <td><%= service.id %></td>
+            <td>
+              <%= link_to service_path(service.id), class: 'btn btn-info mb-3' do %>
+                  <%= service.client.name %>
+              <% end %>
+            </td>
+            <td><%= service.technician.name %></td>
+            <td><%= service.initial_date %></td>
+            <td><%= service.end_date %></td>
+            <td><%= service.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

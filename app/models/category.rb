@@ -1,9 +1,9 @@
 class Category < ApplicationRecord
     include Rails.application.routes.url_helpers
     
-    belongs_to :parent, class_name: 'Category', optional: true
+    belongs_to :parent, class_name: 'Category', optional: true, dependent: :destroy
     has_many :subcategories, class_name: 'Category', foreign_key: 'parent_id', dependent: :destroy
-    has_many :labour
+    has_many :labour, dependent: :destroy
 
     validates :name, presence: true
 
