@@ -41,13 +41,12 @@ class TechniciansController < ApplicationController
     end
 
     def add_skill
-      return render :show if @technician.skills.exists?(params[:skill_id])
-
       @technician_skill = TechnicianSkill.new(technician_id: @technician.id, skill_id: params[:skill_id], level: params[:level])
 
       if @technician_skill.save
         redirect_to technician_path(@technician_skill.technician_id), notice: 'Habilidad agregada correctamente.'
       else
+        @skills = @technician.technician_skills
         render :show, status: :unprocessable_entity
       end
     end

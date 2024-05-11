@@ -13,10 +13,7 @@
       <tbody>
         <% @labours.each do |labour| %>
           <tr>
-              <td><%= labour.labour.description %></td>
-              <td><%= labour.labour.start_date %></td>
-              <td><%= labour.labour.end_date %></td>
-              <td><%= labour.hours %></td>
+              <td><%= labour.labour.title %></td>
               <td><div><%= link_to 'Eliminar', delete_labour_service_path(labour.id), data: {
                       turbo_method: :delete,
                       turbo_confirm: '¿Estás seguro?'

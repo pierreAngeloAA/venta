@@ -1,9 +1,10 @@
 <%= link_to 'Nueva categoria', new_category_path(category_id: @category.id), class: "btn btn-primary me-2" %>
+<%= render partial: 'shared/back_button', locals: { back_path: @category.build_back_path } %>
 
 <div class="row justify-content-center">
-  <%= render partial: 'category', locals: { category: @category } %>
+<%= render partial: 'category', locals: { category: @category } %>
 
-<% if current_user.admin? %> 
+<% if current_user.admin? %>
   <div class="container">
       <div class="justify-content-center">
         <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-primary me-2"  %>

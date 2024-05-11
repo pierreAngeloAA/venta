@@ -1,3 +1,5 @@
+<%= render partial: 'shared/back_button', locals: { back_path: areas_path } %>
+
 <%= form_with(model: @category) do |form| %>
   <% @category.errors.full_messages.each do |message| %>
     <div class="alert alert-danger">

@@ -26,18 +26,14 @@
       <table class="table table-bordered table-striped table-hover">
         <thead class="table-dark">
           <tr>
-            <th>Descripcion</th>
-            <th>Fecha de inicio</th>
-            <th>Fecha final</th>
+            <th>Titulo</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           <% @labours.each do |labour| %>
             <tr>
-              <td><%= labour.description.upcase %></td>
-              <td><%= labour.start_date %></td>
-              <td><%= labour.end_date %></td>
+              <td><%= labour.title.titleize %></td>
               <td>
                 <%= link_to 'Editar', edit_labour_path(labour), class: "btn btn-primary me-2" %>
                 <%= link_to 'Eliminar', labour_path(labour), data: {

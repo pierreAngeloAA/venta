@@ -1,29 +1,28 @@
 # == Schema Information
 #
-# Table name: services
+# Table name: technician_labours
 #
 #  id            :integer          not null, primary key
-#  description   :string
-#  end_date      :datetime
-#  initial_date  :datetime
+#  duration      :integer
+#  total         :decimal(, )
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  client_id     :integer          not null
+#  labour_id     :integer          not null
 #  technician_id :integer          not null
 #
 # Indexes
 #
-#  index_services_on_client_id      (client_id)
-#  index_services_on_technician_id  (technician_id)
+#  index_technician_labours_on_labour_id      (labour_id)
+#  index_technician_labours_on_technician_id  (technician_id)
 #
 # Foreign Keys
 #
-#  client_id      (client_id => clients.id)
+#  labour_id      (labour_id => labours.id)
 #  technician_id  (technician_id => technicians.id)
 #
 require "test_helper"
 
-class ServiceTest < ActiveSupport::TestCase
+class TechnicianLabourTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

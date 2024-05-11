@@ -7,11 +7,11 @@ class LaboursController < ApplicationController
     end
   end
 
-  def new  
+  def new
     @labour = Labour.new
     @category_id = params[:category_id].to_i
   end
-  
+
   def create
     @labour = Labour.new(labour_params)
 
@@ -50,7 +50,7 @@ class LaboursController < ApplicationController
   def labour_params
     params.require(:labour).permit(
       :category_id,
-      :description,
+      :title,
       :start_date,
       :end_date
       )

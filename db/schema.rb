@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_11_163503) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
@@ -28,9 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
 
   create_table "labours", force: :cascade do |t|
     t.integer "category_id", null: false
-    t.text "description"
-    t.date "start_date"
-    t.date "end_date"
+    t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_labours_on_category_id"
@@ -50,8 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
     t.integer "client_id", null: false
     t.integer "technician_id", null: false
     t.string "description"
-    t.date "initial_date"
-    t.date "end_date"
+    t.datetime "initial_date"
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_services_on_client_id"
@@ -64,6 +62,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "technician_labours", force: :cascade do |t|
+    t.integer "technician_id", null: false
+    t.integer "labour_id", null: false
+    t.integer "duration"
+    t.decimal "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["labour_id"], name: "index_technician_labours_on_labour_id"
+    t.index ["technician_id"], name: "index_technician_labours_on_technician_id"
+  end
+
   create_table "technician_skills", force: :cascade do |t|
     t.integer "technician_id", null: false
     t.integer "skill_id", null: false
@@ -71,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
     t.datetime "updated_at", null: false
     t.integer "level"
     t.index ["skill_id"], name: "index_technician_skills_on_skill_id"
+    t.index ["technician_id", "skill_id"], name: "index_technician_skills_on_technician_id_and_skill_id", unique: true
     t.index ["technician_id"], name: "index_technician_skills_on_technician_id"
   end
 
@@ -100,6 +110,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
   add_foreign_key "service_labours", "services"
   add_foreign_key "services", "clients"
   add_foreign_key "services", "technicians"
+  add_foreign_key "technician_labours", "labours"
+  add_foreign_key "technician_labours", "technicians"
   add_foreign_key "technician_skills", "skills"
   add_foreign_key "technician_skills", "technicians"
 end

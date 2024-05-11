@@ -11,12 +11,7 @@
 
   <div class="mb-3">
     <%= form.label :labour_id, 'Seleccionar Labor:', class: 'form-label' %> <br>
-    <%= form.collection_select :labour_id, Labour.all, :id, :description, {prompt: 'Seleccione una labor'}, class: 'form-select' %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :hours, 'Horas', class: 'form-label' %>
-    <%= form.number_field :hours, min: 1, class: 'form-control' %>
+    <%= form.collection_select :labour_id, @service.technician.labours, :id, lambda { |labour| "#{labour.title} - #{labour.duration} hours" }, {prompt: 'Seleccione una labor'}, class: 'form-select' %>
   </div>
 
   <%= form.submit 'Agregar', class: 'btn btn-primary'%>

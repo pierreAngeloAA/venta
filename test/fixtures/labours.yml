@@ -1,13 +1,30 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: labours
+#
+#  id          :integer          not null, primary key
+#  title       :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer          not null
+#
+# Indexes
+#
+#  index_labours_on_category_id  (category_id)
+#
+# Foreign Keys
+#
+#  category_id  (category_id => categories.id)
+#
 
 one:
   category: one
-  description: MyText
+  title: MyText
   start_date: 2023-12-06
   end_date: 2023-12-06
 
 two:
   category: two
-  description: MyText
+  title: MyText
   start_date: 2023-12-06
   end_date: 2023-12-06
