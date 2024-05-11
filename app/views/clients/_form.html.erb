@@ -2,15 +2,15 @@
   <% @client.errors.full_messages.each do |message| %>
       <li><%= message %></li>
   <% end %>
-  
+
   <div class="field">
       <%= form.label :name %>
       <%= form.text_field :name %>
   </div>
 
-  <div>
-    <%= form.label :user_id, 'Seleccionar usuario:' %>
-    <%= form.collection_select :user_id,  User.includes(:client).where(clients: { id: nil }), :id, :email, prompt: 'Seleccione un usuario' %>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
   </div>
 
   <div class="actions">

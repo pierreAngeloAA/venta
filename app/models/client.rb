@@ -1,6 +1,7 @@
 class Client < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, optional: true
 
     validates :name, presence: true
-    validates :user_id, uniqueness: true, allow_nil: true
+    validates :user_id, uniqueness: true, if: -> { user_id.present? }
+
 end

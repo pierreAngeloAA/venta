@@ -7,16 +7,8 @@ class User < ApplicationRecord
   has_one :technician
   has_one :client
 
+  enum role: [:admin, :technician,  :client]
 
-  def admin?
-    client.nil? && technician.nil?
-  end
+  attr_accessor :name
 
-  def client?
-    client.present?
-  end
-
-  def technician?
-    technician.present?
-  end
 end

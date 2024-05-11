@@ -1,0 +1,9 @@
+<%= form_for @user do |f| %>
+    <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+
+    <div class="actions">
+        <%= f.submit 'Update User' %>
+    </div>
+<% end %>

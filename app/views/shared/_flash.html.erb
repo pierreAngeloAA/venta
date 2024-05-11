@@ -1,6 +1,6 @@
 <% flash.each do |type, messages| %>
   <% Array(messages).each do |msg| %>
-    <div class="<%= type %>">
+    <div class="flash flash-<%= type %>">
       <%= msg %>
     </div>
   <% end %>
