@@ -17,22 +17,22 @@ class Skill < ApplicationRecord
 
 	validates :name, presence: true
 
-	scope :categories,  -> { where(parent_id: nil) }
-	scope :subcategories, -> { where.not(parent_id: nil) }
+	scope :skills,  -> { where(parent_id: nil) }
+	scope :subskills, -> { where.not(parent_id: nil) }
 
-	def category?
+	def skill?
 		parent_id.nil?
 	end
 
-	def subcategory?
-		!category?
+	def subskills?
+		!skill?
 	end
 
-	def self.categories_and_subcategories
-		categories + subcategories
+	def self.skills_and_subskills
+		skills + subskills
 	end
 
 	def build_back_path
-		area? ? areas_path : category_path(parent_id)
+		skill? ? areas_path : category_path(parent_id)
 	end
 end

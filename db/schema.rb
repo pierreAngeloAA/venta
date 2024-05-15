@@ -11,13 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2024_05_11_163503) do
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.integer "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
@@ -37,7 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_11_163503) do
   create_table "service_labours", force: :cascade do |t|
     t.integer "service_id", null: false
     t.integer "labour_id", null: false
-    t.integer "hours"
+    t.integer "duration"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["labour_id"], name: "index_service_labours_on_labour_id"
@@ -58,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_11_163503) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

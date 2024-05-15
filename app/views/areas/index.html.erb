@@ -1,8 +1,0 @@
-<h1 class="text-center mb-4">Areas</h1>
-
-<%= link_to 'Nueva Area', new_category_path, class: 'btn btn-primary' %>
-<%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-warning" } %>
-
-<div class="row justify-content-center mt-3">
-  <%= render partial: 'categories/category', collection: @root_categories %>
-</div>

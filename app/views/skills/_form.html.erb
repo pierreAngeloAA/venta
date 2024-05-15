@@ -10,6 +10,11 @@
 			<%= form.text_field :name , class: 'form-control'%>
 	</div>
 
+	<div class="mb-3">
+  	<%= form.label :parent_id, 'Seleccionar Categoria', class: 'form-label' %> <br>
+    <%= form.collection_select :parent_id, Skill.skills, :id, :name, {prompt: 'Sin Categoria'}, class: "form-select" %>
+  </div>
+
 	<div class="mb-3 form-group">
 			<%= form.submit 'Guardar', class: 'btn btn-primary'%>
 	</div>

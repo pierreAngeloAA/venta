@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "main#home"
 
-  resources :categories, except: :index
+  resources :categories, only: [:index, :show]
   resources :labours, except: :show
   resources :areas, only: :index
   resources :skills
