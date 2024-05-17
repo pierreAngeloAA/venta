@@ -1,6 +1,9 @@
-<h1 class="text-center mb-4">Lista de Usuarios</h1>
+
 
 <div class="container">
+  <h1 class="text-center mb-4">Lista de Usuarios</h1>
+  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %>
+
   <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover">
       <thead class="table-dark">

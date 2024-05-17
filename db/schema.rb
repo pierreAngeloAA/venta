@@ -20,11 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_11_163503) do
   end
 
   create_table "labours", force: :cascade do |t|
-    t.integer "category_id", null: false
+    t.integer "skill_id", null: false
     t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_labours_on_category_id"
+    t.index ["skill_id"], name: "index_labours_on_skill_id"
   end
 
   create_table "service_labours", force: :cascade do |t|
@@ -100,7 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_11_163503) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "labours", "categories"
+  add_foreign_key "labours", "skills"
   add_foreign_key "service_labours", "labours"
   add_foreign_key "service_labours", "services"
   add_foreign_key "services", "clients"

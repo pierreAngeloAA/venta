@@ -1,21 +1,29 @@
-<%= form_with(model: @skill) do |form| %>
-	<% @skill.errors.full_messages.each do |message| %>
-		<div class="alert alert-danger">
-			<%= message %>
+<div class="container">
+	<%= render partial: 'shared/back_button', locals: { back_path: skills_path, class_name: "btn btn-outline-warning" } %> 
+
+	<div class="row justify-content-center">
+		<div  class="col-md-6">
+			<%= form_with(model: @skill) do |form| %>
+				<% @skill.errors.full_messages.each do |message| %>
+					<div class="alert alert-danger">
+						<%= message %>
+					</div>
+				<% end %>
+			
+				<div class="mb-3 form-group">
+						<%= form.label :name, 'name' %>
+						<%= form.text_field :name , class: 'form-control'%>
+				</div>
+			
+				<div class="mb-3">
+					<%= form.label :parent_id, 'Seleccionar Categoria', class: 'form-label' %> <br>
+					<%= form.collection_select :parent_id, Skill.skills, :id, :name, {prompt: 'Sin Categoria'}, class: "form-select" %>
+				</div>
+			
+				<div class="mb-3 form-group">
+						<%= form.submit 'Guardar', class: 'btn btn-primary'%>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
-
-	<div class="mb-3 form-group">
-			<%= form.label :name, 'name' %>
-			<%= form.text_field :name , class: 'form-control'%>
 	</div>
-
-	<div class="mb-3">
-  	<%= form.label :parent_id, 'Seleccionar Categoria', class: 'form-label' %> <br>
-    <%= form.collection_select :parent_id, Skill.skills, :id, :name, {prompt: 'Sin Categoria'}, class: "form-select" %>
-  </div>
-
-	<div class="mb-3 form-group">
-			<%= form.submit 'Guardar', class: 'btn btn-primary'%>
-	</div>
-<% end %>
+</div>

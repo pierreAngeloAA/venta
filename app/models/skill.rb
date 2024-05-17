@@ -6,6 +6,7 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  parent_id  :integer
 #
 class Skill < ApplicationRecord
 	include Rails.application.routes.url_helpers
@@ -33,6 +34,6 @@ class Skill < ApplicationRecord
 	end
 
 	def build_back_path
-		skill? ? areas_path : category_path(parent_id)
+		skill? ? categories_path : category_path(parent_id)
 	end
 end

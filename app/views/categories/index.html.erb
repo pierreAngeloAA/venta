@@ -1,7 +1,7 @@
 <div class= container>
   <h1 class="text-center mb-4">Categorias</h1>
   
-  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-warning" } %>
+  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %>
   
   <div class="row justify-content-center mt-3">
     <%= render partial: 'category', collection: @root_categories %>

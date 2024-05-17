@@ -1,4 +1,4 @@
-<%= render partial: 'shared/back_button', locals: { back_path: @category.build_back_path } %>
+<%= render partial: 'shared/back_button', locals: { back_path: @category.build_back_path, class_name: "btn btn-outline-dark"  } %>
 
 <div class="row justify-content-center">
   <%= render partial: 'category', locals: { category: @category } %>

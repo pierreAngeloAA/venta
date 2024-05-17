@@ -1,31 +1,30 @@
-<%= form_with(model: @labour) do |form| %>
-  <% @labour.errors.full_messages.each do |message| %>
-    <div class="alert alert-danger">
-      <%= message %>
+<div class="container">
+  <%= render partial: 'shared/back_button', locals: { back_path: labours_path, class_name: "btn btn-outline-warning" } %> 
+  
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with(model: @labour) do |form| %>
+        <% @labour.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger">
+            <%= message %>
+          </div>
+        <% end %>
+      
+        <div class="mb-3 form-group">
+          <%= form.label :skill_id, 'Seleccionar Categoría:' %>
+          <%= form.collection_select :skill_id, Skill.subskills, :id, :name, { prompt: 'Selecciona una categoría' }, class: 'form-select' %>
+        </div>
+      
+        <div class="mb-3 form-group">
+          <%= form.label :title, 'Titulo' %>
+          <%= form.text_area :title, class: 'form-control' %>
+        </div>
+      
+        <div class="mb-3 form-group">
+          <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="mb-3 form-group">
-    <%= form.label :category_id, 'Seleccionar Categoría:' %>
-    <%= form.collection_select :category_id, Category.categories_and_subcategories, :id, :name, { prompt: 'Selecciona una categoría' }, class: 'form-select' %>
+    
   </div>
-
-  <div class="mb-3 form-group">
-    <%= form.label :title, 'Descripcion' %>
-    <%= form.text_area :title, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3 form-group">
-    <%= form.label :start_date, 'Fecha De Inicio' %>
-    <%= form.date_field :start_date, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3 form-group">
-    <%= form.label :end_date, 'Fecha Final' %>
-    <%= form.date_field :end_date, class: 'form-control' %>
-  </div>
-
-  <div class="mb-3 form-group">
-    <%= form.submit 'Guardar', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>

@@ -3,7 +3,7 @@
 # Table name: service_labours
 #
 #  id          :integer          not null, primary key
-#  description :string
+#  description :text
 #  duration    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

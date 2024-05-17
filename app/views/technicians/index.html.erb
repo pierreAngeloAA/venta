@@ -1,8 +1,9 @@
-<h1 class="text-center mb-4">Lista de Técnicos.</h1>
-
-<%= link_to 'Nuevo Técnico', new_technician_path, class: 'btn btn-primary mb-3' %>
-
 <div class="container">
+  <h1 class="text-center mb-4">Lista de Técnicos.</h1>
+  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %> 
+  <%= link_to 'Nuevo Técnico', new_technician_path, class: 'btn btn-primary mb-3' %>
+  
+
   <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover">
       <thead class="table-dark">

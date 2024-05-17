@@ -1,14 +1,13 @@
-<h1 class="text-center mb-4">Lista De labores</h1>
-
 <div class="container">
-  <div class="col-md-6">
-    <%= link_to 'Nueva labor', new_labour_path, class: 'btn btn-primary mb-3' %>
-  </div>
+  <h1 class="text-center mb-4">Lista De labores</h1>
+  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %> 
+  <%= link_to 'Nueva labor', new_labour_path, class: 'btn btn-primary mb-3' %>
+  
   <div class="row justify-content-center">
     <div class="col-md-6">
       <%= form_tag labours_path, method: :get, id: 'filter-form', class: 'mb-3' do %>
-        <%= label_tag :category_id, 'Filtrar por categoría:', class: 'form-label' %>
-        <%= select_tag :category_id, options_for_select(Category.categories_and_subcategories.map { |c| ["#{c.parent.name} - #{c.name}", c.id] }, params[:category_id]), prompt: 'Todas las labores', class: 'form-select', onchange: 'submitFilterForm()' %>
+        <%= label_tag :skill_id, 'Filtrar por categoría:', class: 'form-label' %>
+        <%= select_tag :skill_id, options_for_select(Skill.skills_and_subskills.map { |c| ["#{c.parent} - #{c.name}", c.id] }, params[:category_id]), prompt: 'Todas las labores', class: 'form-select', onchange: 'submitFilterForm()' %>
         <%= submit_tag 'Filtrar', class: 'btn btn-primary', style: 'display: none;' %>
       <% end %>
     </div>
@@ -33,7 +32,7 @@
         <tbody>
           <% @labours.each do |labour| %>
             <tr>
-              <td><%= labour.title.titleize %></td>
+              <td><%= labour.title %></td>
               <td>
                 <%= link_to 'Editar', edit_labour_path(labour), class: "btn btn-primary me-2" %>
                 <%= link_to 'Eliminar', labour_path(labour), data: {

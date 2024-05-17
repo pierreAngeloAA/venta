@@ -1,4 +1,6 @@
 <div class="container">
+  <%= render partial: 'shared/back_button', locals: { back_path: technicians_path, class_name: "btn btn-outline-warning" } %> 
+
   <div class="row justify-content-center">
     <div class="col-md-6">
       <%= form_with(model: @technician, local: true) do |form| %>
