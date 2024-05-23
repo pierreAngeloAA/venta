@@ -1,0 +1,30 @@
+<%= form_with(url: add_labour_technician_path, method: :put, class: 'needs-validation') do |form| %>
+  <% if @technician_labour.present? %>
+    <% @technician_labour.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger">
+          <%= message %>
+        </div>
+    <% end %>
+  <% end %>
+
+  <%= form.hidden_field :id, value: @technician.id %>
+
+  <div class="mb-3">
+    <%= form.label :labour_id, 'Seleccionar labor:', class: 'form-label' %>
+    <%= form.collection_select :labour_id, Labour.all, :id, :title, { prompt: 'Selecciona una labor' }, { class: 'form-select' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :duration, 'Duración en Horas:', class: 'form-label' %>
+    <%= form.number_field :duration, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :total, 'Total:', class: 'form-label' %>
+    <%= form.number_field :total, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit 'Agregar', class: 'btn btn-primary' %>
+  </div>
+<% end %>

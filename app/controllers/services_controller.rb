@@ -8,7 +8,7 @@ class ServicesController < ApplicationController
 
 	def show
     @service_labour = ServiceLabour.new
-    @labours = @service.service_labours
+    labours_of_services
 	end
 
 	def new
@@ -47,6 +47,7 @@ class ServicesController < ApplicationController
     if @service_labour.save
       redirect_to service_path(@service.id), notice: 'Se agregó la labor correctamente.'
     else
+			labours_of_services
       render :show, status: :unprocessable_entity
     end
 	end
@@ -59,6 +60,9 @@ class ServicesController < ApplicationController
 	end
 
 	private
+	def labours_of_services
+    @labours = @service.service_labours
+	end
 
 	def set_service
     @service = Service.find(params[:id])
@@ -77,7 +81,9 @@ class ServicesController < ApplicationController
 	def service_labour_params
 		params.require(:service_labour).permit(
 			:service_id,
-			:labour_id
+			:labour_id,
+			:duration,
+			:description
 		)
 	end
 end

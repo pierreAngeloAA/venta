@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :technicians do
     put :add_skill, on: :member
     delete :delete_skill, on: :member
+
+    put :add_labour, on: :member
+    delete :delete_labour, on: :member
   end
 
   resources :services do

@@ -3,10 +3,9 @@
     <table class="table table-bordered table-striped table-hover">
       <thead class="table-dark">
         <tr>
-          <th>Descripcccion</th>
-          <th>Fecha de inicio</th>
-          <th>Fecha final</th>
-          <th>Tiempo de ejecucion</th>
+          <th>Titulo</th>
+          <th>Duracion en Horas</th>
+          <th>Descripcion</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -14,6 +13,8 @@
         <% @labours.each do |labour| %>
           <tr>
               <td><%= labour.labour.title %></td>
+              <td><%= labour.duration %></td>
+              <td><%= labour.description %></td>
               <td><div><%= link_to 'Eliminar', delete_labour_service_path(labour.id), data: {
                       turbo_method: :delete,
                       turbo_confirm: '¿Estás seguro?'

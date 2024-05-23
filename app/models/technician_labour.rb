@@ -23,4 +23,6 @@
 class TechnicianLabour < ApplicationRecord
   belongs_to :technician
   belongs_to :labour
+
+  validates_presence_of :technician_id, :labour_id, :duration, :total
 end

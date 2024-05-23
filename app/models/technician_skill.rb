@@ -24,6 +24,7 @@ class TechnicianSkill < ApplicationRecord
   belongs_to :technician
   belongs_to :skill
 
+  validates_presence_of :technician_id, :skill_id, :level
   validates :level, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
   validates :technician_id, uniqueness: { scope: :skill_id, message: "cannot have skill duplicated" }
 end

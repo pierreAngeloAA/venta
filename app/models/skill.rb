@@ -15,6 +15,7 @@ class Skill < ApplicationRecord
 	has_many :subskills, class_name: 'Skill', foreign_key: 'parent_id', dependent: :destroy
 	has_many :technician_skills, dependent: :destroy
 	has_many :technicians, through: :technician_skills
+	has_many :labours
 
 	validates :name, presence: true
 

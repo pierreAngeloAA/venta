@@ -4,6 +4,21 @@ user1 = User.create!(
   role: 'admin',
   password_confirmation: 'testme'
 )
+user2 = User.create!(
+  email: 'user2@venta.com',
+  password: 'testme',
+  role: 'client',
+  password_confirmation: 'testme'
+)
+client1 = Client.create(user: user2, name: 'pablo', email: user2.email)  
+
+user3 = User.create!(
+  email: 'user3@venta.com',
+  password: 'testme',
+  role: 'technician',
+  password_confirmation: 'testme'
+)
+technician1 = Technician.create(user: user3, name: 'alberto', email: user3.email)
 
 skill1 = Skill.create(name: "Metalmecanica")
 skill2 = Skill.create(name: "Construccion")

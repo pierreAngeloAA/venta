@@ -1,15 +1,17 @@
 <%= form_with(url: add_skill_technician_path, method: :put, class: 'needs-validation') do |form| %>
-  <% @technician_skill.errors.full_messages.each do |message| %>
-    <div class="alert alert-danger">
-      <%= message %>
-    </div>
+  <% if @technician_skill.present? %>  
+    <% @technician_skill.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
   <% end %>
 
   <%= form.hidden_field :id, value: @technician.id %>
 
   <div class="mb-3">
     <%= form.label :skill_id, 'Seleccionar Habilidad:', class: 'form-label' %> <br>
-    <%= form.collection_select :skill_id, Skill.all, :id, :name, { prompt: 'Selecciona una Habilidad' }, class: 'form-select' %>
+    <%= form.collection_select :skill_id, Skill.subskills, :id, :name, { prompt: 'Selecciona una Habilidad' }, class: 'form-select' %>
   </div>
 
   <div class="mb-3">
@@ -17,5 +19,7 @@
     <%= form.range_field :level, min: 1, max: 10, class: 'form-range' %>
   </div>
 
-  <%= form.submit 'Agregar', class: 'btn btn-primary' %>
+  <div class="mb-3">
+    <%= form.submit 'Agregar', class: 'btn btn-primary' %>
+  </div>
 <% end %>

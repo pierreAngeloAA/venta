@@ -7,7 +7,7 @@
     <div class="col-md-6">
       <%= form_tag labours_path, method: :get, id: 'filter-form', class: 'mb-3' do %>
         <%= label_tag :skill_id, 'Filtrar por categoría:', class: 'form-label' %>
-        <%= select_tag :skill_id, options_for_select(Skill.skills_and_subskills.map { |c| ["#{c.parent} - #{c.name}", c.id] }, params[:category_id]), prompt: 'Todas las labores', class: 'form-select', onchange: 'submitFilterForm()' %>
+        <%= select_tag :skill_id, options_for_select(Skill.subskills.map { |c| ["#{c.parent.name} - #{c.name}", c.id] }, params[:skill_id]), prompt: 'Todas las labores', class: 'form-select', onchange: 'submitFilterForm()' %>
         <%= submit_tag 'Filtrar', class: 'btn btn-primary', style: 'display: none;' %>
       <% end %>
     </div>

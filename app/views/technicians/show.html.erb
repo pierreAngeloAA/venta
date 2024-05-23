@@ -1,14 +1,10 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <%= render partial: 'shared/back_button', locals: { back_path: technicians_path, class_name: "btn btn-outline-dark" } %> 
+  <h4 class="row justify-content-center"><%= "Técnico #{@technician.name}" %></h4>
+
+  <div class="row mt-3">
     <div class="col-md-6">
-      <h4 class="row justify-content-center"><%= @technician.name.upcase %></h4> 
-      <h5 class="row justify-content-center"><%= @technician.email %></h5>
-    </div>
-  </div>
-  
-  <div class="row mt-3 justify-content-center">
-    <div class="col-md-8">
-      <h3>Especialidades:</h3>
+      <h3>Habilidades:</h3>
       <table class="table table-dordered table-striped table-hover">
         <thead class="table-dark">
           <tr>
@@ -37,12 +33,50 @@
           <% end %>
         </tbody>
       </table>
+
+      <h3>Labores:</h3>
+      <table class="table table-dordered table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Titulo</th>
+            <th scope="col">Duracion En Horas</th>
+            <th scope="col">Total</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @labours.each do |labour| %>
+            <tr>
+              <td><%= labour.labour.title %></td>
+              <td><%= labour.duration %></td>
+              <td><%= "$#{labour.total}" %></td>
+              <td>  
+                <%= link_to 'Eliminar', delete_labour_technician_path(labour.id), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: '¿Estás seguro?'
+                  }, class: 'btn btn-danger'
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-  </div>
-  
-  <div class="row mt-3 justify-content-center">
+
     <div class="col-md-6">
-      <%= render partial: 'add_skill' %>
+      <div class="container row justify-content-center">
+        <h3 class="row justify-content-center">Agregar Habilidad</h3>
+          <div class="col-md-6">
+            <%= render partial: 'add_skill' %>
+          </div>
+      </div>  
+
+      <div class="container row justify-content-center">
+        <h3 class="row justify-content-center">Agregar Labor</h3>
+          <div class="col-md-6">
+            <%= render partial: 'add_labour' %>
+          </div>
+      </div>
     </div>
   </div>
 </div>
