@@ -11,7 +11,7 @@
 
   <div class="mb-3">
     <%= form.label :labour_id, 'Seleccionar labor:', class: 'form-label' %>
-    <%= form.collection_select :labour_id, Labour.all, :id, :title, { prompt: 'Selecciona una labor' }, { class: 'form-select' } %>
+    <%= form.collection_select :labour_id, Labour.by_skills(@technician.skills.pluck(:id)), :id, :title, { prompt: 'Selecciona una labor' }, { class: 'form-select' } %>
   </div>
 
   <div class="mb-3">
@@ -20,8 +20,8 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :total, 'Total:', class: 'form-label' %>
-    <%= form.number_field :total, class: 'form-control' %>
+    <%= form.label :price, 'Price:', class: 'form-label' %>
+    <%= form.number_field :price, class: 'form-control' %>
   </div>
 
   <div class="mb-3">

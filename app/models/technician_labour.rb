@@ -4,7 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  duration      :integer
-#  total         :decimal(, )
+#  price         :decimal(, )
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  labour_id     :integer          not null
@@ -24,5 +24,5 @@ class TechnicianLabour < ApplicationRecord
   belongs_to :technician
   belongs_to :labour
 
-  validates_presence_of :technician_id, :labour_id, :duration, :total
+  validates_presence_of :technician_id, :labour_id, :duration, :price
 end

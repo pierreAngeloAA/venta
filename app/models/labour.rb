@@ -21,5 +21,8 @@ class Labour < ApplicationRecord
 
   validates_presence_of :title
 
-  scope :root_labour, ->(skill_id) {joins(:skill).where(skill_id: skill_id).or(where(skill: {parent_id: skill_id}))}
+  scope :root_labour, -> (skill_id) { joins(:skill).where(skill_id: skill_id).or(where(skill: {parent_id: skill_id})) }
+
+  scope :by_skills, -> (skill_ids) { where(skill_id: skill_ids) }
+
 end

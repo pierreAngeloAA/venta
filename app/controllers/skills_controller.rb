@@ -34,7 +34,9 @@ class SkillsController < ApplicationController
 
 	def destroy
 		@skill.destroy
-		redirect_to  skills_path, alert: 'Habilidad eliminada'
+		return redirect_to skills_path, alert: 'Habilidad eliminada' if @skill.destroyed?
+
+		redirect_to skills_path, alert: @skill.errors.full_messages.join(", ")
 	end
 
 	def index_area

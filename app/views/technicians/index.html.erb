@@ -1,10 +1,9 @@
 <div class="container">
   <h1 class="text-center mb-4">Lista de Técnicos.</h1>
-  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %> 
-  <%= link_to 'Nuevo Técnico', new_technician_path, class: 'btn btn-primary mb-3' %>
-  
+  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %>
+  <%= link_to 'Nuevo Técnico', new_technician_path, class: 'btn btn-primary' %>
 
-  <div class="table-responsive">
+  <div class="table-responsive mt-3">
     <table class="table table-bordered table-striped table-hover">
       <thead class="table-dark">
         <tr>
@@ -43,8 +42,8 @@
               </ul>
             </td>
             <td>
-              <%= link_to 'Editar', edit_technician_path(technician), class: "btn btn-primary me-2" %>  
-              <%= link_to 'Eliminar', technician_path(technician), data: {
+              <%= link_to 'Editar', edit_technician_path(technician), class: "btn btn-primary me-2" %>
+              <%= link_to technician.discarded? ? 'Recover' : 'Eliminar', technician_path(technician), data: {
                 turbo_method: :delete,
                 turbo_confirm: '¿Estás seguro?'
                 }, class: "btn btn-danger me-2" %>

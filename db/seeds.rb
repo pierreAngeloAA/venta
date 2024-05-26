@@ -1,3 +1,9 @@
+User.create!(
+  email: 'alex@docketwise.co',
+  password: '1045717291',
+  role: 'admin',
+  password_confirmation: '1045717291'
+)
 user1 = User.create!(
   email: 'user1@venta.com',
   password: 'testme',
@@ -10,7 +16,7 @@ user2 = User.create!(
   role: 'client',
   password_confirmation: 'testme'
 )
-client1 = Client.create(user: user2, name: 'pablo', email: user2.email)  
+client1 = Client.create(user: user2, name: 'pablo', email: user2.email)
 
 user3 = User.create!(
   email: 'user3@venta.com',

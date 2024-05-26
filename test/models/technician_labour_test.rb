@@ -4,7 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  duration      :integer
-#  total         :decimal(, )
+#  price         :decimal(, )
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  labour_id     :integer          not null

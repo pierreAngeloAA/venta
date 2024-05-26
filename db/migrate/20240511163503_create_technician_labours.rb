@@ -4,7 +4,7 @@ class CreateTechnicianLabours < ActiveRecord::Migration[7.0]
       t.references :technician, null: false, foreign_key: true
       t.references :labour, null: false, foreign_key: true
       t.integer :duration
-      t.decimal :total
+      t.decimal :price
 
       t.timestamps
     end

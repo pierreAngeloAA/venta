@@ -1,13 +1,13 @@
 <div class="container">
   <h1 class="text-center mb-4">Lista De labores</h1>
-  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %> 
-  <%= link_to 'Nueva labor', new_labour_path, class: 'btn btn-primary mb-3' %>
-  
-  <div class="row justify-content-center">
+  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %>
+  <%= link_to 'Nueva labor', new_labour_path, class: 'btn btn-primary' %>
+
+  <div class="row justify-content-center mt-3">
     <div class="col-md-6">
       <%= form_tag labours_path, method: :get, id: 'filter-form', class: 'mb-3' do %>
         <%= label_tag :skill_id, 'Filtrar por categoría:', class: 'form-label' %>
-        <%= select_tag :skill_id, options_for_select(Skill.subskills.map { |c| ["#{c.parent.name} - #{c.name}", c.id] }, params[:skill_id]), prompt: 'Todas las labores', class: 'form-select', onchange: 'submitFilterForm()' %>
+        <%= select_tag :skill_id, options_for_select(Skill.subskills.sort_by_parent_name.map { |c| ["#{c.parent.name} - #{c.name}", c.id] }, params[:skill_id]), prompt: 'Todas las labores', class: 'form-select', onchange: 'submitFilterForm()' %>
         <%= submit_tag 'Filtrar', class: 'btn btn-primary', style: 'display: none;' %>
       <% end %>
     </div>

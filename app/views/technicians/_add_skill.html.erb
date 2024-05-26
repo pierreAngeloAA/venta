@@ -1,10 +1,8 @@
-<%= form_with(url: add_skill_technician_path, method: :put, class: 'needs-validation') do |form| %>
-  <% if @technician_skill.present? %>  
-    <% @technician_skill.errors.full_messages.each do |message| %>
-      <div class="alert alert-danger">
-        <%= message %>
-      </div>
-    <% end %>
+<%= form_with(model: @technician_skill, url: add_skill_technician_path, method: :put, class: 'needs-validation') do |form| %>
+  <% @technician_skill.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger">
+      <%= message %>
+    </div>
   <% end %>
 
   <%= form.hidden_field :id, value: @technician.id %>
