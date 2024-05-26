@@ -1,7 +1,28 @@
+# == Schema Information
+#
+# Table name: labours
+#
+#  id         :integer          not null, primary key
+#  title      :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  skill_id   :integer          not null
+#
+# Indexes
+#
+#  index_labours_on_skill_id  (skill_id)
+#
+# Foreign Keys
+#
+#  skill_id  (skill_id => skills.id)
+#
 class Labour < ApplicationRecord
-  belongs_to :category
+  belongs_to :skill
 
-  validates_presence_of :description, :start_date, :end_date
+  validates_presence_of :title
 
-  scope :root_labour, ->(category_id) {joins(:category).where(category_id: category_id).or(where(category: {parent_id: category_id}))}
+  scope :root_labour, -> (skill_id) { joins(:skill).where(skill_id: skill_id).or(where(skill: {parent_id: skill_id})) }
+
+  scope :by_skills, -> (skill_ids) { where(skill_id: skill_ids) }
+
 end

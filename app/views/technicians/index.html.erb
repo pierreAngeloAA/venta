@@ -1,17 +1,56 @@
-<h1>Lista de Técnicos.</h1>
+<div class="container">
+  <h1 class="text-center mb-4">Lista de Técnicos.</h1>
+  <%= render partial: 'shared/back_button', locals: { back_path: root_path, class_name: "btn btn-outline-dark" } %>
+  <%= link_to 'Nuevo Técnico', new_technician_path, class: 'btn btn-primary' %>
 
-<%= link_to 'Nuevo Técnico', new_technician_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: 'technician', collection: @technicians %>
-  </tbody>
-</table>
+  <div class="table-responsive mt-3">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Habilidades</th>
+          <th>Level</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @technicians.each do |technician| %>
+          <tr>
+            <td>
+              <%= technician.id %>
+            </td>
+            <td>
+              <%= link_to technician.name, technician_path(technician), class:'btn btn-info mb-3'%>
+            </td>
+            <td>
+              <%= technician.email %>
+            </td>
+            <td>
+              <ul>
+                <% technician.technician_skills.each do |technician_skill| %>
+                  <li><%= technician_skill.skill.name %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <% technician.technician_skills.each do |technician_skill| %>
+                  <li><%= technician_skill.level %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td>
+              <%= link_to 'Editar', edit_technician_path(technician), class: "btn btn-primary me-2" %>
+              <%= link_to technician.discarded? ? 'Recover' : 'Eliminar', technician_path(technician), data: {
+                turbo_method: :delete,
+                turbo_confirm: '¿Estás seguro?'
+                }, class: "btn btn-danger me-2" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

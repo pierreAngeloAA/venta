@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
-
+    before_action :find_user, only: [:edit, :update, :destroy]
+    # for testing only
+    
     def index
        @users = User.all
     end
 
     def edit
-        @user = User.find(params[:id])
     end
 
     def update
-        @user = User.find(params[:id])
         if @user.update(user_params)
           redirect_to users_path, notice: 'Usuario actualizado con éxito.'
         else
@@ -17,15 +17,13 @@ class UsersController < ApplicationController
         end
     end
 
-    private
+    def destroy
+        @user.destroy
+        redirect_to users_path, notice: 'Usuario eliminado con éxito.'
+    end
 
-    def user_params
-        params.require(:user).permit(
-            :nombre,
-            :email,
-            :password,
-            :password_confirmation,
-            :role
-        )
+    private
+    def find_user
+        @user = User.find(params[:id])
     end
 end

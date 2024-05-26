@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.integer "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2024_05_25_163105) do
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
@@ -27,19 +20,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
   end
 
   create_table "labours", force: :cascade do |t|
-    t.integer "category_id", null: false
-    t.text "description"
-    t.date "start_date"
-    t.date "end_date"
+    t.integer "skill_id", null: false
+    t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_labours_on_category_id"
+    t.index ["skill_id"], name: "index_labours_on_skill_id"
   end
 
   create_table "service_labours", force: :cascade do |t|
     t.integer "service_id", null: false
     t.integer "labour_id", null: false
-    t.integer "hours"
+    t.integer "duration"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["labour_id"], name: "index_service_labours_on_labour_id"
@@ -50,8 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
     t.integer "client_id", null: false
     t.integer "technician_id", null: false
     t.string "description"
-    t.date "initial_date"
-    t.date "end_date"
+    t.datetime "initial_date"
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_services_on_client_id"
@@ -60,8 +52,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "technician_labours", force: :cascade do |t|
+    t.integer "technician_id", null: false
+    t.integer "labour_id", null: false
+    t.integer "duration"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["labour_id"], name: "index_technician_labours_on_labour_id"
+    t.index ["technician_id"], name: "index_technician_labours_on_technician_id"
   end
 
   create_table "technician_skills", force: :cascade do |t|
@@ -71,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
     t.datetime "updated_at", null: false
     t.integer "level"
     t.index ["skill_id"], name: "index_technician_skills_on_skill_id"
+    t.index ["technician_id", "skill_id"], name: "index_technician_skills_on_technician_id_and_skill_id", unique: true
     t.index ["technician_id"], name: "index_technician_skills_on_technician_id"
   end
 
@@ -80,6 +85,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "email"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_technicians_on_discarded_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,11 +102,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153157) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "labours", "categories"
+  add_foreign_key "labours", "skills"
   add_foreign_key "service_labours", "labours"
   add_foreign_key "service_labours", "services"
   add_foreign_key "services", "clients"
   add_foreign_key "services", "technicians"
+  add_foreign_key "technician_labours", "labours"
+  add_foreign_key "technician_labours", "technicians"
   add_foreign_key "technician_skills", "skills"
   add_foreign_key "technician_skills", "technicians"
 end

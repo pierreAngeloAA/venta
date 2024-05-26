@@ -1,5 +1,9 @@
-<%= link_to category_path(category) do %>
-  <div>
-    <h1><%= category.name %></h1>
+<div class="col-md-6 mb-4">
+  <div class="card text-center border-info">
+    <div class="card-body">
+      <%= link_to category_path(category) do %>
+        <h1><%= category.name %></h1>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

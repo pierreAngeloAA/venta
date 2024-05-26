@@ -1,15 +1,9 @@
-<%= render partial: 'shared/back_button', locals: { back_path: @category.build_back_path } %>
+<%= render partial: 'shared/back_button', locals: { back_path: @category.build_back_path, class_name: "btn btn-outline-dark"  } %>
 
-<%= link_to 'Nueva categoria', new_category_path(category_id: @category.id) %>
+<div class="row justify-content-center">
+  <%= render partial: 'category', locals: { category: @category } %>
+</div><hr>
 
-<%= render partial: 'category', locals: { category: @category } %>
-
-<div>
-  <%= link_to 'Edit', edit_category_path(@category) %>
-  <%= link_to 'Eliminar', category_path(@category), data: {
-    turbo_method: :delete,
-    turbo_confirm: '¿Estás seguro?'
-  } %>
+<div class="row justify-content-center">
+  <%= render partial: 'category', collection: @subcategories %>
 </div>
-
-<%= render partial: 'category', collection: @subcategories %>

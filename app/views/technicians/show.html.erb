@@ -1,11 +1,82 @@
-<h4><%= @technician.name.upcase %></h4> 
-<h5><%= @technician.user.email %></h5
+<div class="container">
+  <%= render partial: 'shared/back_button', locals: { back_path: technicians_path, class_name: "btn btn-outline-dark" } %>
+  <h4 class="justify-content-center"><%= "Técnico #{@technician.name}" %></h4>
 
-<h3>Especialidades: </h3>
-<ul>
-  <% @skills.each do |skill| %>
-    <li><%= skill.skill.name %> - <%= skill.level %></li>
-  <% end %>
-</ul>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <h3>Habilidades:</h3>
+      <table class="table table-dordered table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Habilidad</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @skills.each do |skill| %>
+            <tr>
+              <td><%= skill.skill.name %></td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: <%= skill.level * 10 %>%" aria-valuenow="<%= skill.level * 10 %>" aria-valuemin="0" aria-valuemax="100"><%= skill.level %></div>
+                </div>
+              </td>
+              <td>
+                <%= link_to 'Eliminar', delete_skill_technician_path(skill.id), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: '¿Estás seguro?'
+                  }, class: 'btn btn-danger'
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<%= render partial: 'add_skill' %>
+      <h3>Labores:</h3>
+      <table class="table table-dordered table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Titulo</th>
+            <th scope="col">Duracion En Horas</th>
+            <th scope="col">Price</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @labours.each do |labour| %>
+            <tr>
+              <td><%= labour.labour.title %></td>
+              <td><%= labour.duration %></td>
+              <td><%= "$#{labour.price}" %></td>
+              <td>
+                <%= link_to 'Eliminar', delete_labour_technician_path(labour.id), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: '¿Estás seguro?'
+                  }, class: 'btn btn-danger'
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-6">
+      <div class="container row justify-content-center">
+        <h3 class="row justify-content-center">Agregar Habilidad</h3>
+          <div class="col-md-6">
+            <%= render partial: 'add_skill' %>
+          </div>
+      </div>
+
+      <div class="container row justify-content-center">
+        <h3 class="row justify-content-center">Agregar Labor</h3>
+          <div class="col-md-6">
+            <%= render partial: 'add_labour' %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
